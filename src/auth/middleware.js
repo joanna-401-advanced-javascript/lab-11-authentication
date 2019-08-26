@@ -2,49 +2,16 @@
 
 const User = require('./users-model.js');
 
-/**
- * This MW runs before any route gets hit - Id when the request has a username and password - HTTP header called Authorization that has the u/p for the request - in plain text, not encrypted - use HTTPS on top of it to make it secure - if not, it's naked -  can be used to make it happen
- */
-
 module.exports = (request, response, next) => {
-  //extract the login information
   try {
     let [type, authString] = authrequest.headers.authorization.split(' ');
 
     if(type === 'basic') {
       return _authBasic(authString);
-      }else {
+      } else {
         return _authError
       }
-
-  // switch(type) {
-  //   case 'basic':
-  //     return _authBasic(authString);
-  //   default:
-  //     return _authError;
-  // }
-  //this above is same as above it basically
-
-  }
-
   } catch (error) {
-    return _authError();
-}
-
-  try {
-
-    let [authType, encodedString] = req.headers.authorization.split(/\s+/);
-
-    // BASIC Auth  ... Authorization:Basic ZnJlZDpzYW1wbGU=
-
-    switch(authType.toLowerCase()) {
-      case 'basic':
-        return _authBasic(encodedString);
-      default:
-        return _authError();
-    }
-
-  } catch(error) {
     return _authError();
   }
 
@@ -53,8 +20,6 @@ module.exports = (request, response, next) => {
    * @param authString
    * @private
    */
-
-
   function _authBasic() {
     let base64Buffer = Buffer.from(authString,'base64'); // <Buffer 01 02...>
     let bufferString = base64Buffer.toString(); // john:mysecret
@@ -73,19 +38,16 @@ module.exports = (request, response, next) => {
    */
   function _authenticate(user) {
     if ( user ) {
-      // middleware function - if i have a user, i verify the password
-      // i attach the user into the request
       request.user = user;
-      request.token = user.generateToken;// this token will be used in any other request
+      request.token = user.generateToken();// this token will be used in any other request
       next();
-    }
-    else {
-      _authError();
+    } else {
+      return _authError();
     }
   }
 
   function _authError() {
-    next({status: 401, statusMessage: 'Unauthorized', message: 'Invalid User ID/Password'}); // Could say 'invalid credentials' so no hints that it's a u/p
+    next({status: 401, statusMessage: 'Unauthorized', message: 'Invalid User ID/Password'});
   }
 
 };
