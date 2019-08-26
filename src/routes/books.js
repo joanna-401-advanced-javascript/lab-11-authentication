@@ -2,12 +2,13 @@
 
 const express = require('express');
 const router = express.Router();
+const auth = require('../auth/auth');
 
-router.get('/books', handleGetAll);
-router.get('/books/:id', handleGetOne);
+router.get('/books', auth, handleGetAll);
+router.get('/books/:id', auth, handleGetOne);
 
 // Route Handlers
-function handleGetAll(req, res, next) {
+function handleGetAll(request, response, next) {
   let books = {
     count: 3,
     results: [
@@ -16,14 +17,18 @@ function handleGetAll(req, res, next) {
       { title: 'Eloquent Javascript' },
     ],
   };
-  res.status(200).json(books);
+  response.status(200).json(books);
 }
 
-function handleGetOne(req, res, next) {
+function handleGetOne(request, response, next) {
   let book = {
     title:'Moby Dick',
   };
-  res.status(200).json(book);
+  response.status(200).json(book);
+}
+
+function checkToken(request, response, next) {
+
 }
 
 module.exports = router;
