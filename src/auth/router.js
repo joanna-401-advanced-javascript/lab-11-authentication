@@ -19,7 +19,7 @@ authRouter.post('/signup', (request, response, next) => {
     .catch(next);
 });
 
-authRouter.get('/signin', auth, (request, response, next) => {
+authRouter.post('/signin', auth, (request, response, next) => {
   response.cookie('auth', request.token);
   response.send(request.token);
 });

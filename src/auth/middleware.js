@@ -6,17 +6,17 @@ module.exports = (request, response, next) => {
   try {
     let [type, authString] = request.headers.authorization.split(' ');
 
-    if(type === 'basic') {
+    if(type === 'Basic') {
       return _authBasic(authString);
     } else {
-      return _authError;
+      return _authError();
     }
   } catch (error) {
     return _authError();
   }
 
   /**
-   * This function will parse basic authenticaltion
+   * This function will parse basic authentication
    * @param authString
    * @private
    */
@@ -24,9 +24,9 @@ module.exports = (request, response, next) => {
     let base64Buffer = Buffer.from(authString,'base64'); // <Buffer 01 02...>
     let bufferString = base64Buffer.toString(); // john:mysecret
     let [username,password] = bufferString.split(':');  // variables username="john" and password="mysecret"
-    let auth = [username,password];  // {username:"john", password:"mysecret"}
+    let userSignIn = {username,password};  // {username:"john", password:"mysecret"}
 
-    return User.authenticateBasic(auth)
+    return User.authenticateBasic(userSignIn)
       .then( user => _authenticate(user) );
   }
 
