@@ -4,8 +4,7 @@
 
 ### Links and Resources
 * [submission PR](https://github.com/ginapult-401-advanced-javascript/lab-11-authentication/pull/5)
-* [travis](https://travis-ci.com/ginapult-401-advanced-javascript/deployment-workshop)
-* [front-end](https://ginapult-deploymentworkshop.herokuapp.com/) (when applicable)
+* [travis](https://travis-ci.com/ginapult-401-advanced-javascript/lab-11-authentication)
 
 #### Documentation
 * [jsdoc](https://ginapult-deploymentworkshop.herokuapp.com/docs/) (Server assignments)
