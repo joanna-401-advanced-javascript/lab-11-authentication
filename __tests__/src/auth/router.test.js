@@ -54,3 +54,25 @@ describe('Auth Router', () => {
   });
   
 });
+
+describe('Book router', () => {
+  describe('book route authentication', () => {
+
+    it('can protect /books route', () => {
+      return mockRequest.get('/books')
+        .auth('Fred', 'password')
+        .then(results => {
+          expect(results.status).toEqual(401);
+        });
+    });
+
+    it('can protect /books/:id route', () => {
+      return mockRequest.get('/books/:id')
+        .auth('Fred', 'password')
+        .then(results => {
+          expect(results.status).toEqual(401);
+        });
+    });
+  });
+});
+

@@ -21,18 +21,13 @@ beforeAll(async (done) => {
 afterAll(supergoose.stopDB);
 
 describe('Auth Middleware', () => {
-  
   // admin:password: YWRtaW46cGFzc3dvcmQ=
   // admin:foo: YWRtaW46Zm9v
-  
   let errorObject = {"message": "Invalid User ID/Password", "status": 401, "statusMessage": "Unauthorized"};
   
   describe('user authentication', () => {
-    
     let cachedToken;
-
     it('fails a login for a user (admin) with the incorrect basic credentials', () => {
-
       let req = {
         headers: {
           authorization: 'Basic YWRtaW46Zm9v',
@@ -46,11 +41,9 @@ describe('Auth Middleware', () => {
         .then(() => {
           expect(next).toHaveBeenCalledWith(errorObject);
         });
-
     }); // it()
 
     it('logs in an admin user with the right credentials', () => {
-
       let req = {
         headers: {
           authorization: 'Basic YWRtaW46cGFzc3dvcmQ=',
@@ -65,9 +58,6 @@ describe('Auth Middleware', () => {
           cachedToken = req.token;
           expect(next).toHaveBeenCalledWith();
         });
-
-    }); // it()
-    
+    });
   });
-
 });
