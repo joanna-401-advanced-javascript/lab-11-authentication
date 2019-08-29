@@ -3,11 +3,11 @@
 ### Author: Gina Pultorak, Joanna Arroyo
 
 ### Links and Resources
-* [submission PR](https://github.com/ginapult-401-advanced-javascript/lab-11-authentication/pull/8)
-* [travis](https://travis-ci.com/ginapult-401-advanced-javascript/lab-11-authentication)
+* [submission PR](https://github.com/joanna-401-advanced-javascript/lab-11-authentication/pull/2)
+* [travis](https://travis-ci.com/joanna-401-advanced-javascript/lab-11-authentication)
 
 #### Documentation
-* [jsdoc](https://lab-11-authentication-gpja.herokuapp.com/docs) (Server assignments)
+* [jsdoc](https://joanna-lab-11.herokuapp.com/docs/)
 
 ### Main modules worked with
 #### `middleware.js`
