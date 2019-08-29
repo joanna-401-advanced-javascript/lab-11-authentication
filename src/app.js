@@ -24,6 +24,9 @@ app.use(express.urlencoded({extended:true}));
 app.use(authRouter);
 app.use(bookRouter);
 
+// Static Routes
+app.use('/docs', express.static('docs'));
+
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);
